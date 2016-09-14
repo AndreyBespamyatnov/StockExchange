@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockExchange", "StockExchange\StockExchange.csproj", "{026DA1D4-5CD7-4254-9CC4-AC2486736CB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockExchange.Test", "StockExchange.Test\StockExchange.Test.csproj", "{56D96570-778C-4098-B489-29A2C5463497}"
+	ProjectSection(ProjectDependencies) = postProject
+		{026DA1D4-5CD7-4254-9CC4-AC2486736CB5} = {026DA1D4-5CD7-4254-9CC4-AC2486736CB5}
+	EndProjectSection
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "StockExchange.Database", "StockExchange.Database\StockExchange.Database.sqlproj", "{B5BD3B6A-3649-47C5-A369-153AC16D5F54}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{026DA1D4-5CD7-4254-9CC4-AC2486736CB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{026DA1D4-5CD7-4254-9CC4-AC2486736CB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{026DA1D4-5CD7-4254-9CC4-AC2486736CB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{026DA1D4-5CD7-4254-9CC4-AC2486736CB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56D96570-778C-4098-B489-29A2C5463497}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56D96570-778C-4098-B489-29A2C5463497}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56D96570-778C-4098-B489-29A2C5463497}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56D96570-778C-4098-B489-29A2C5463497}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5BD3B6A-3649-47C5-A369-153AC16D5F54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5BD3B6A-3649-47C5-A369-153AC16D5F54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5BD3B6A-3649-47C5-A369-153AC16D5F54}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B5BD3B6A-3649-47C5-A369-153AC16D5F54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5BD3B6A-3649-47C5-A369-153AC16D5F54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5BD3B6A-3649-47C5-A369-153AC16D5F54}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
