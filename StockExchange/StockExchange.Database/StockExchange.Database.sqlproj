@@ -77,7 +77,7 @@
     <Build Include="dbo\Tables\aspnet_PersonalizationAllUsers.sql" />
     <Build Include="dbo\Tables\aspnet_PersonalizationPerUser.sql" />
     <Build Include="dbo\Tables\aspnet_WebEvent_Events.sql" />
-    <Build Include="dbo\Tables\StockEntries.sql" />
+    <Build Include="dbo\Tables\Stock.sql" />
     <Build Include="dbo\Tables\PersonalizedUserList.sql" />
     <Build Include="dbo\Views\vw_aspnet_Applications.sql">
       <QuotedIdentifier>Off</QuotedIdentifier>

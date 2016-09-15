@@ -6,6 +6,6 @@ namespace StockExchange.Models
     {
         public Guid UserId { get; set; }
         public string StockCode { get; set; }
-        public ushort Price { get; set; } 
+        public int Price { get; set; } 
     }
 }

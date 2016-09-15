@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DapperExtensions;
+using DapperExtensions.Mapper;
 using StockExchange.Models;
 
 namespace StockExchange.DAL
@@ -35,6 +36,19 @@ namespace StockExchange.DAL
 
             var result = Delete<PersonalizedUserList>(pg);
             return result;
+        }
+    }
+
+    public class PersonalizedUserListMapper : ClassMapper<PersonalizedUserList>
+    {
+        public PersonalizedUserListMapper()
+        {
+            // ReSharper disable once DoNotCallOverridableMethodsInConstructor
+            Table("PersonalizedUserList");
+            Map(p => p.UserId).Key(KeyType.NotAKey);
+            Map(m => m.Price).Ignore();
+            // ReSharper disable once DoNotCallOverridableMethodsInConstructor
+            AutoMap();
         }
     }
 }
