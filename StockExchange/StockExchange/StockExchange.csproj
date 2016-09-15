@@ -75,12 +75,14 @@
   <ItemGroup>
     <Compile Include="Authentication\AuthenticationHelper.cs" />
     <Compile Include="Authentication\SecuredWebServiceHeader.cs" />
+    <Compile Include="BL\StockExchangeProvider.cs" />
     <Compile Include="ConfigurationProvider.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DAL\BaseCRUD.cs" />
     <Compile Include="DAL\PersonalizedUserListCRUD.cs" />
     <Compile Include="DAL\StockEntriesCRUD.cs" />
     <Compile Include="Extensions\GenericExtensions.cs" />
+    <Compile Include="BL\IStockExchangeProvider.cs" />
     <Compile Include="Models\ErrorCode.cs" />
     <Compile Include="Models\PersonalizedUserList.cs" />
     <Compile Include="Models\RegisterUserModel.cs" />
@@ -100,9 +102,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BL\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -6,6 +6,14 @@ namespace StockExchange.Extensions
 {
     public static class GenericExtensions
     {
+        public static void ForEach<T>(this IEnumerable<T> enumeration, Action<T> action)
+        {
+            foreach (T item in enumeration)
+            {
+                action(item);
+            }
+        }
+
         /// <summary>
         /// Checks whatever <paramref name="o"/> has default value of it's type,
         /// indifferently of value or reference type it is. 
