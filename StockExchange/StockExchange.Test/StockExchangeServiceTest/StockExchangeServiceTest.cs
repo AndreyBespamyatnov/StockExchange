@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Security;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json;
 using StockExchange.Authentication;
 using StockExchange.BL;
 using StockExchange.DAL;
 using StockExchange.Models;
+using Newtonsoft.Json;
 
 namespace StockExchange.Test.StockExchangeServiceTest
 {
