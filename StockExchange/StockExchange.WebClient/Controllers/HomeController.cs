@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace StockExchange.WebClient.Controllers
 {
@@ -39,8 +35,32 @@ namespace StockExchange.WebClient.Controllers
                 return RedirectToAction("Login", "Account");
             }
 
-            var stocks = StockContainer.Instance.AddStockToUser(stockCode);
+            StockContainer.Instance.AddStockToUser(stockCode);
             return View("Index");
+        }  
+
+        [HttpPost]
+        public JsonResult RemoveStockFromUser(string stockCode)
+        {
+            if (!AuthenticationContainer.Instance.IsAuthenticated)
+            {
+                return new JsonResult();
+            }
+
+            var stocks = StockContainer.Instance.RemoveStockFromUser(stockCode);
+            return Json(stocks, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult GetUserStocks()
+        {
+            if (!AuthenticationContainer.Instance.IsAuthenticated)
+            {
+                return new JsonResult();
+            }
+
+            var stocks = StockContainer.Instance.GetUserStocks();
+            return Json(stocks, JsonRequestBehavior.AllowGet);
         }  
     }
 }

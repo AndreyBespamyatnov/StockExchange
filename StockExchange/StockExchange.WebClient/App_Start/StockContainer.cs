@@ -38,5 +38,29 @@ namespace StockExchange.WebClient
 
             return string.Empty;
         }
+
+        public string RemoveStockFromUser(string stockCode)
+        {
+            if (AuthenticationContainer.Instance.Header != null)
+            {
+                var userId = AuthenticationContainer.Instance.UserId;
+                var result = _client.RemoveStockFromUser(AuthenticationContainer.Instance.Header, userId, stockCode);
+                return result;
+            }
+
+            return string.Empty;
+        }
+
+        public string GetUserStocks()
+        {
+            if (AuthenticationContainer.Instance.Header != null)
+            {
+                var userId = AuthenticationContainer.Instance.UserId;
+                var result = _client.GetUserStocks(AuthenticationContainer.Instance.Header, userId);
+                return result;
+            }
+
+            return string.Empty;
+        }
     }
 }
