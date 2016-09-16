@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using StockExchange.WebClient.StockExchangeServiceReference;
 
 namespace StockExchange.WebClient
@@ -6,28 +7,52 @@ namespace StockExchange.WebClient
     public sealed class AuthenticationContainer
     {
         private static readonly Lazy<AuthenticationContainer> Lazy = new Lazy<AuthenticationContainer>(() => new AuthenticationContainer());
-        public SecuredWebServiceHeader Header { get; private set; }
 
         private readonly StockExchangeServiceSoapClient _client;
 
         public static AuthenticationContainer Instance { get { return Lazy.Value; } }
 
-        public string UserName
+        public bool IsAuthenticated
         {
             get
             {
-                return Header != null ? Header.Username : string.Empty;
-            }
-        }
+                HttpCookie cookie = HttpContext.Current.Request.Cookies.Get(Constants.CookiesName);
+                if (cookie != null)
+                {
+                    string token = cookie[Constants.UserTokenKeyName];
+                    return _client.IsUserValid(new SecuredWebServiceHeader { AuthenticatedToken = token });
+                }
 
-        public bool IsAuthenticated {
-            get { return Header != null && !string.IsNullOrWhiteSpace(Header.AuthenticatedToken); }
+                return false;
+            }
         }
 
         public Guid UserId {
             get
             {
-                return _client.GetCurrentUserId(Header);
+                HttpCookie cookie = HttpContext.Current.Request.Cookies.Get(Constants.CookiesName);
+                if (cookie != null)
+                {
+                    string token = cookie[Constants.UserTokenKeyName];
+                    return _client.GetCurrentUserId(new SecuredWebServiceHeader { AuthenticatedToken = token });
+                }
+
+                return Guid.Empty;
+            }
+        }
+
+        public string UserName
+        {
+            get
+            {
+                HttpCookie cookie = HttpContext.Current.Request.Cookies.Get(Constants.CookiesName);
+                if (cookie != null)
+                {
+                    string userName = cookie[Constants.UserNameKeyName];
+                    return userName;
+                }
+
+                return string.Empty;
             }
         }
 
@@ -38,14 +63,24 @@ namespace StockExchange.WebClient
 
         public bool Authenticate(string email, string password)
         {
-            Header = new SecuredWebServiceHeader
+            var header = new SecuredWebServiceHeader
             {
                 Username = email,
                 Password = password
             };
-            Header.AuthenticatedToken = _client.AuthenticateUser(Header);
+            var token = _client.AuthenticateUser(header);
 
-            return !string.IsNullOrWhiteSpace(Header.AuthenticatedToken);
+            HttpCookie cookie = new HttpCookie(Constants.CookiesName);
+            cookie.Expires = DateTime.Now.AddHours(1);
+            HttpContext.Current.Response.Cookies.Remove(Constants.CookiesName);
+            HttpContext.Current.Response.Cookies.Add(cookie); 
+
+            cookie.Values[Constants.UserTokenKeyName] = token;
+            cookie.Values[Constants.UserNameKeyName] = email;
+
+            HttpContext.Current.Response.SetCookie(cookie);
+
+            return !string.IsNullOrWhiteSpace(token);
         }
 
         public void Register(string email, string password)
@@ -83,7 +118,12 @@ namespace StockExchange.WebClient
 
         public void LogOff()
         {
-            Header = new SecuredWebServiceHeader();
+            HttpCookie cookie = HttpContext.Current.Request.Cookies.Get(Constants.CookiesName);
+            if (cookie != null)
+            {
+                string token = cookie[Constants.UserTokenKeyName];
+                _client.LogOff(new SecuredWebServiceHeader {AuthenticatedToken = token});
+            }
         }
     }
 }

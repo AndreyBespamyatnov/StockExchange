@@ -15,7 +15,7 @@
     <AssemblyName>StockExchange.WebClient</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
-    <UseIISExpress>true</UseIISExpress>
+    <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
@@ -113,6 +113,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\AuthenticationContainer.cs" />
     <Compile Include="App_Start\StockContainer.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -167,13 +168,20 @@
     <Content Include="Service References\StockExchangeServiceReference\StockExchange.WebClient.StockExchangeServiceReference.RemoveStockFromUserResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
-    <None Include="Service References\StockExchangeServiceReference\StockExchangeService.disco" />
+    <None Include="Properties\PublishProfiles\IIS.pubxml" />
     <None Include="Service References\StockExchangeServiceReference\configuration91.svcinfo" />
     <None Include="Service References\StockExchangeServiceReference\configuration.svcinfo" />
     <None Include="Service References\StockExchangeServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Service References\StockExchangeServiceReference\StockExchange.WebClient.StockExchangeServiceReference.IsUserValidResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\StockExchangeServiceReference\StockExchange.WebClient.StockExchangeServiceReference.LogOffResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\StockExchangeServiceReference\StockExchangeService1.disco" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -185,7 +193,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <None Include="Service References\StockExchangeServiceReference\StockExchangeService.wsdl" />
+    <None Include="Service References\StockExchangeServiceReference\StockExchangeService1.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -239,7 +247,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:5769/</IISUrl>
+          <IISUrl>http://localhost/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

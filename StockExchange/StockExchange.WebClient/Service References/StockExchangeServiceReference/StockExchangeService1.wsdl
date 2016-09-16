@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://asmx.crossover.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://asmx.crossover.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://asmx.crossover.com/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://asmx.crossover.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Stock Exchange Web Service</wsdl:documentation>
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://asmx.crossover.com/">
@@ -24,6 +24,22 @@
         </s:sequence>
         <s:anyAttribute />
       </s:complexType>
+      <s:element name="IsUserValid">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsUserValidResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsUserValidResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogOff">
+        <s:complexType />
+      </s:element>
+      <s:element name="LogOffResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="GetCurrentUserId">
         <s:complexType />
       </s:element>
@@ -149,6 +165,24 @@
   <wsdl:message name="AuthenticateUserSecuredWebServiceHeader">
     <wsdl:part name="SecuredWebServiceHeader" element="tns:SecuredWebServiceHeader" />
   </wsdl:message>
+  <wsdl:message name="IsUserValidSoapIn">
+    <wsdl:part name="parameters" element="tns:IsUserValid" />
+  </wsdl:message>
+  <wsdl:message name="IsUserValidSoapOut">
+    <wsdl:part name="parameters" element="tns:IsUserValidResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsUserValidSecuredWebServiceHeader">
+    <wsdl:part name="SecuredWebServiceHeader" element="tns:SecuredWebServiceHeader" />
+  </wsdl:message>
+  <wsdl:message name="LogOffSoapIn">
+    <wsdl:part name="parameters" element="tns:LogOff" />
+  </wsdl:message>
+  <wsdl:message name="LogOffSoapOut">
+    <wsdl:part name="parameters" element="tns:LogOffResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogOffSecuredWebServiceHeader">
+    <wsdl:part name="SecuredWebServiceHeader" element="tns:SecuredWebServiceHeader" />
+  </wsdl:message>
   <wsdl:message name="GetCurrentUserIdSoapIn">
     <wsdl:part name="parameters" element="tns:GetCurrentUserId" />
   </wsdl:message>
@@ -205,6 +239,14 @@
       <wsdl:input message="tns:AuthenticateUserSoapIn" />
       <wsdl:output message="tns:AuthenticateUserSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="IsUserValid">
+      <wsdl:input message="tns:IsUserValidSoapIn" />
+      <wsdl:output message="tns:IsUserValidSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LogOff">
+      <wsdl:input message="tns:LogOffSoapIn" />
+      <wsdl:output message="tns:LogOffSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetCurrentUserId">
       <wsdl:input message="tns:GetCurrentUserIdSoapIn" />
       <wsdl:output message="tns:GetCurrentUserIdSoapOut" />
@@ -237,6 +279,26 @@
       <wsdl:input>
         <soap:body use="literal" />
         <soap:header message="tns:AuthenticateUserSecuredWebServiceHeader" part="SecuredWebServiceHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsUserValid">
+      <soap:operation soapAction="http://asmx.crossover.com/IsUserValid" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:IsUserValidSecuredWebServiceHeader" part="SecuredWebServiceHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOff">
+      <soap:operation soapAction="http://asmx.crossover.com/LogOff" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:LogOffSecuredWebServiceHeader" part="SecuredWebServiceHeader" use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
@@ -314,6 +376,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="IsUserValid">
+      <soap12:operation soapAction="http://asmx.crossover.com/IsUserValid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:IsUserValidSecuredWebServiceHeader" part="SecuredWebServiceHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LogOff">
+      <soap12:operation soapAction="http://asmx.crossover.com/LogOff" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:LogOffSecuredWebServiceHeader" part="SecuredWebServiceHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetCurrentUserId">
       <soap12:operation soapAction="http://asmx.crossover.com/GetCurrentUserId" style="document" />
       <wsdl:input>
@@ -377,10 +459,10 @@
   <wsdl:service name="StockExchangeService">
     <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Stock Exchange Web Service</wsdl:documentation>
     <wsdl:port name="StockExchangeServiceSoap" binding="tns:StockExchangeServiceSoap">
-      <soap:address location="http://localhost:45414/StockExchangeService.asmx" />
+      <soap:address location="http://localhost/StockExchangeService/StockExchangeService.asmx" />
     </wsdl:port>
     <wsdl:port name="StockExchangeServiceSoap12" binding="tns:StockExchangeServiceSoap12">
-      <soap12:address location="http://localhost:45414/StockExchangeService.asmx" />
+      <soap12:address location="http://localhost/StockExchangeService/StockExchangeService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

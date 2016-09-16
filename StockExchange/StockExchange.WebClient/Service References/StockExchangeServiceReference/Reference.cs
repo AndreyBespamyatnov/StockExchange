@@ -23,6 +23,22 @@ namespace StockExchange.WebClient.StockExchangeServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://asmx.crossover.com/AuthenticateUser", ReplyAction="*")]
         System.Threading.Tasks.Task<StockExchange.WebClient.StockExchangeServiceReference.AuthenticateUserResponse> AuthenticateUserAsync(StockExchange.WebClient.StockExchangeServiceReference.AuthenticateUserRequest request);
         
+        // CODEGEN: Generating message contract since message IsUserValidRequest has headers
+        [System.ServiceModel.OperationContractAttribute(Action="http://asmx.crossover.com/IsUserValid", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        StockExchange.WebClient.StockExchangeServiceReference.IsUserValidResponse IsUserValid(StockExchange.WebClient.StockExchangeServiceReference.IsUserValidRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://asmx.crossover.com/IsUserValid", ReplyAction="*")]
+        System.Threading.Tasks.Task<StockExchange.WebClient.StockExchangeServiceReference.IsUserValidResponse> IsUserValidAsync(StockExchange.WebClient.StockExchangeServiceReference.IsUserValidRequest request);
+        
+        // CODEGEN: Generating message contract since message LogOffRequest has headers
+        [System.ServiceModel.OperationContractAttribute(Action="http://asmx.crossover.com/LogOff", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        StockExchange.WebClient.StockExchangeServiceReference.LogOffResponse LogOff(StockExchange.WebClient.StockExchangeServiceReference.LogOffRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://asmx.crossover.com/LogOff", ReplyAction="*")]
+        System.Threading.Tasks.Task<StockExchange.WebClient.StockExchangeServiceReference.LogOffResponse> LogOffAsync(StockExchange.WebClient.StockExchangeServiceReference.LogOffRequest request);
+        
         // CODEGEN: Generating message contract since message GetCurrentUserIdRequest has headers
         [System.ServiceModel.OperationContractAttribute(Action="http://asmx.crossover.com/GetCurrentUserId", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -278,6 +294,67 @@ namespace StockExchange.WebClient.StockExchangeServiceReference {
         
         public AuthenticateUserResponse(string AuthenticateUserResult) {
             this.AuthenticateUserResult = AuthenticateUserResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="IsUserValid", WrapperNamespace="http://asmx.crossover.com/", IsWrapped=true)]
+    public partial class IsUserValidRequest {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://asmx.crossover.com/")]
+        public StockExchange.WebClient.StockExchangeServiceReference.SecuredWebServiceHeader SecuredWebServiceHeader;
+        
+        public IsUserValidRequest() {
+        }
+        
+        public IsUserValidRequest(StockExchange.WebClient.StockExchangeServiceReference.SecuredWebServiceHeader SecuredWebServiceHeader) {
+            this.SecuredWebServiceHeader = SecuredWebServiceHeader;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="IsUserValidResponse", WrapperNamespace="http://asmx.crossover.com/", IsWrapped=true)]
+    public partial class IsUserValidResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://asmx.crossover.com/", Order=0)]
+        public bool IsUserValidResult;
+        
+        public IsUserValidResponse() {
+        }
+        
+        public IsUserValidResponse(bool IsUserValidResult) {
+            this.IsUserValidResult = IsUserValidResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="LogOff", WrapperNamespace="http://asmx.crossover.com/", IsWrapped=true)]
+    public partial class LogOffRequest {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://asmx.crossover.com/")]
+        public StockExchange.WebClient.StockExchangeServiceReference.SecuredWebServiceHeader SecuredWebServiceHeader;
+        
+        public LogOffRequest() {
+        }
+        
+        public LogOffRequest(StockExchange.WebClient.StockExchangeServiceReference.SecuredWebServiceHeader SecuredWebServiceHeader) {
+            this.SecuredWebServiceHeader = SecuredWebServiceHeader;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="LogOffResponse", WrapperNamespace="http://asmx.crossover.com/", IsWrapped=true)]
+    public partial class LogOffResponse {
+        
+        public LogOffResponse() {
         }
     }
     
@@ -566,6 +643,51 @@ namespace StockExchange.WebClient.StockExchangeServiceReference {
             StockExchange.WebClient.StockExchangeServiceReference.AuthenticateUserRequest inValue = new StockExchange.WebClient.StockExchangeServiceReference.AuthenticateUserRequest();
             inValue.SecuredWebServiceHeader = SecuredWebServiceHeader;
             return ((StockExchange.WebClient.StockExchangeServiceReference.StockExchangeServiceSoap)(this)).AuthenticateUserAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        StockExchange.WebClient.StockExchangeServiceReference.IsUserValidResponse StockExchange.WebClient.StockExchangeServiceReference.StockExchangeServiceSoap.IsUserValid(StockExchange.WebClient.StockExchangeServiceReference.IsUserValidRequest request) {
+            return base.Channel.IsUserValid(request);
+        }
+        
+        public bool IsUserValid(StockExchange.WebClient.StockExchangeServiceReference.SecuredWebServiceHeader SecuredWebServiceHeader) {
+            StockExchange.WebClient.StockExchangeServiceReference.IsUserValidRequest inValue = new StockExchange.WebClient.StockExchangeServiceReference.IsUserValidRequest();
+            inValue.SecuredWebServiceHeader = SecuredWebServiceHeader;
+            StockExchange.WebClient.StockExchangeServiceReference.IsUserValidResponse retVal = ((StockExchange.WebClient.StockExchangeServiceReference.StockExchangeServiceSoap)(this)).IsUserValid(inValue);
+            return retVal.IsUserValidResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<StockExchange.WebClient.StockExchangeServiceReference.IsUserValidResponse> StockExchange.WebClient.StockExchangeServiceReference.StockExchangeServiceSoap.IsUserValidAsync(StockExchange.WebClient.StockExchangeServiceReference.IsUserValidRequest request) {
+            return base.Channel.IsUserValidAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<StockExchange.WebClient.StockExchangeServiceReference.IsUserValidResponse> IsUserValidAsync(StockExchange.WebClient.StockExchangeServiceReference.SecuredWebServiceHeader SecuredWebServiceHeader) {
+            StockExchange.WebClient.StockExchangeServiceReference.IsUserValidRequest inValue = new StockExchange.WebClient.StockExchangeServiceReference.IsUserValidRequest();
+            inValue.SecuredWebServiceHeader = SecuredWebServiceHeader;
+            return ((StockExchange.WebClient.StockExchangeServiceReference.StockExchangeServiceSoap)(this)).IsUserValidAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        StockExchange.WebClient.StockExchangeServiceReference.LogOffResponse StockExchange.WebClient.StockExchangeServiceReference.StockExchangeServiceSoap.LogOff(StockExchange.WebClient.StockExchangeServiceReference.LogOffRequest request) {
+            return base.Channel.LogOff(request);
+        }
+        
+        public void LogOff(StockExchange.WebClient.StockExchangeServiceReference.SecuredWebServiceHeader SecuredWebServiceHeader) {
+            StockExchange.WebClient.StockExchangeServiceReference.LogOffRequest inValue = new StockExchange.WebClient.StockExchangeServiceReference.LogOffRequest();
+            inValue.SecuredWebServiceHeader = SecuredWebServiceHeader;
+            StockExchange.WebClient.StockExchangeServiceReference.LogOffResponse retVal = ((StockExchange.WebClient.StockExchangeServiceReference.StockExchangeServiceSoap)(this)).LogOff(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<StockExchange.WebClient.StockExchangeServiceReference.LogOffResponse> StockExchange.WebClient.StockExchangeServiceReference.StockExchangeServiceSoap.LogOffAsync(StockExchange.WebClient.StockExchangeServiceReference.LogOffRequest request) {
+            return base.Channel.LogOffAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<StockExchange.WebClient.StockExchangeServiceReference.LogOffResponse> LogOffAsync(StockExchange.WebClient.StockExchangeServiceReference.SecuredWebServiceHeader SecuredWebServiceHeader) {
+            StockExchange.WebClient.StockExchangeServiceReference.LogOffRequest inValue = new StockExchange.WebClient.StockExchangeServiceReference.LogOffRequest();
+            inValue.SecuredWebServiceHeader = SecuredWebServiceHeader;
+            return ((StockExchange.WebClient.StockExchangeServiceReference.StockExchangeServiceSoap)(this)).LogOffAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:45414/StockExchangeService.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost/StockExchangeService/StockExchangeService.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="StockExchangeService.disco" MetadataType="Disco" ID="af38cda1-d795-436b-9192-d5f5b94437b1" SourceId="1" SourceUrl="http://localhost:45414/StockExchangeService.asmx?disco" />
-    <MetadataFile FileName="StockExchangeService.wsdl" MetadataType="Wsdl" ID="ad0e5975-db7b-4bb6-b751-6c155442d52a" SourceId="1" SourceUrl="http://localhost:45414/StockExchangeService.asmx?wsdl" />
+    <MetadataFile FileName="StockExchangeService1.wsdl" MetadataType="Wsdl" ID="1e79225e-f592-4571-87ea-b0d302f86e50" SourceId="1" SourceUrl="http://localhost/StockExchangeService/StockExchangeService.asmx?wsdl" />
+    <MetadataFile FileName="StockExchangeService1.disco" MetadataType="Disco" ID="ba11b08f-56d7-4ed2-82ec-9f02350e092d" SourceId="1" SourceUrl="http://localhost/StockExchangeService/StockExchangeService.asmx?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

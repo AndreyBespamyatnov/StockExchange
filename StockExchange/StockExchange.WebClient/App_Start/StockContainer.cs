@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using StockExchange.WebClient.StockExchangeServiceReference;
 
 namespace StockExchange.WebClient
@@ -18,10 +19,15 @@ namespace StockExchange.WebClient
 
         public string GetStocks(string prefix)
         {
-            if (AuthenticationContainer.Instance.Header != null)
+            HttpCookie cookie = HttpContext.Current.Request.Cookies.Get(Constants.CookiesName);
+            if (cookie != null)
             {
-                var stocks = _client.GetStocks(AuthenticationContainer.Instance.Header, prefix);
-                return stocks;
+                string token = cookie[Constants.UserTokenKeyName];
+                if (!string.IsNullOrWhiteSpace(token))
+                {
+                    var stocks = _client.GetStocks(new SecuredWebServiceHeader {AuthenticatedToken = token}, prefix);
+                    return stocks;
+                }
             }
 
             return string.Empty;
@@ -29,11 +35,17 @@ namespace StockExchange.WebClient
 
         public string AddStockToUser(string stockCode)
         {
-            if (AuthenticationContainer.Instance.Header != null)
+            HttpCookie cookie = HttpContext.Current.Request.Cookies.Get(Constants.CookiesName);
+            if (cookie != null)
             {
-                var userId = AuthenticationContainer.Instance.UserId;
-                var result = _client.AddStockToUser(AuthenticationContainer.Instance.Header, userId, stockCode);
-                return result;
+                string token = cookie[Constants.UserTokenKeyName];
+                if (!string.IsNullOrWhiteSpace(token))
+                {
+                    var userId = AuthenticationContainer.Instance.UserId;
+                    var result = _client.AddStockToUser(new SecuredWebServiceHeader {AuthenticatedToken = token}, userId,
+                        stockCode);
+                    return result;
+                }
             }
 
             return string.Empty;
@@ -41,11 +53,17 @@ namespace StockExchange.WebClient
 
         public string RemoveStockFromUser(string stockCode)
         {
-            if (AuthenticationContainer.Instance.Header != null)
+            HttpCookie cookie = HttpContext.Current.Request.Cookies.Get(Constants.CookiesName);
+            if (cookie != null)
             {
-                var userId = AuthenticationContainer.Instance.UserId;
-                var result = _client.RemoveStockFromUser(AuthenticationContainer.Instance.Header, userId, stockCode);
-                return result;
+                string token = cookie[Constants.UserTokenKeyName];
+                if (!string.IsNullOrWhiteSpace(token))
+                {
+                    var userId = AuthenticationContainer.Instance.UserId;
+                    var result = _client.RemoveStockFromUser(new SecuredWebServiceHeader {AuthenticatedToken = token},
+                        userId, stockCode);
+                    return result;
+                }
             }
 
             return string.Empty;
@@ -53,11 +71,16 @@ namespace StockExchange.WebClient
 
         public string GetUserStocks()
         {
-            if (AuthenticationContainer.Instance.Header != null)
+                        HttpCookie cookie = HttpContext.Current.Request.Cookies.Get(Constants.CookiesName);
+            if (cookie != null)
             {
-                var userId = AuthenticationContainer.Instance.UserId;
-                var result = _client.GetUserStocks(AuthenticationContainer.Instance.Header, userId);
-                return result;
+                string token = cookie[Constants.UserTokenKeyName];
+                if (!string.IsNullOrWhiteSpace(token))
+                {
+                    var userId = AuthenticationContainer.Instance.UserId;
+                    var result = _client.GetUserStocks(new SecuredWebServiceHeader {AuthenticatedToken = token}, userId);
+                    return result;
+                }
             }
 
             return string.Empty;
