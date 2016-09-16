@@ -9,6 +9,11 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "StockExchange.Database", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockExchange.Test", "StockExchange.Test\StockExchange.Test.csproj", "{E37C435B-0BDF-405C-BDE9-85D9E3A56305}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockExchange.WebClient", "StockExchange.WebClient\StockExchange.WebClient.csproj", "{7F88E760-CFA0-4D95-ACD2-3CB76C9E4AE2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{026DA1D4-5CD7-4254-9CC4-AC2486736CB5} = {026DA1D4-5CD7-4254-9CC4-AC2486736CB5}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +34,10 @@ Global
 		{E37C435B-0BDF-405C-BDE9-85D9E3A56305}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E37C435B-0BDF-405C-BDE9-85D9E3A56305}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E37C435B-0BDF-405C-BDE9-85D9E3A56305}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F88E760-CFA0-4D95-ACD2-3CB76C9E4AE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F88E760-CFA0-4D95-ACD2-3CB76C9E4AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F88E760-CFA0-4D95-ACD2-3CB76C9E4AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F88E760-CFA0-4D95-ACD2-3CB76C9E4AE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

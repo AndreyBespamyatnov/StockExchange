@@ -6,7 +6,7 @@ namespace StockExchange.BL
     {
         string AddStockToUser(Guid userId, string stockCode);
         string RemoveStockFromUser(Guid userId, string stockCode);
-        string GetStocks();
+        string GetStocks(string prefixFilter);
         string GetUserStocks(Guid userId);
     }
 }

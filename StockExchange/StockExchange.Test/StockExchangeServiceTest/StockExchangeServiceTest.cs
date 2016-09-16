@@ -167,7 +167,7 @@ namespace StockExchange.Test.StockExchangeServiceTest
             securedWebServiceHeader.AuthenticatedToken = token;
             securedWebServiceHeader.UserId = client.GetCurrentUserId();
 
-            var stringResult = client.GetStocks();
+            var stringResult = client.GetStocks(string.Empty);
             var result = JsonConvert.DeserializeObject<StockExchangeProvider.StockResult<List<Stock>>>(stringResult);
 
             Assert.IsNotNull(result);

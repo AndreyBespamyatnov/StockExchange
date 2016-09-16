@@ -19,14 +19,31 @@ namespace StockExchange.DAL
 
         public StatusValuePair<PersonalizedUserList> Create(Guid userId, string stockCode)
         {
-            var result = Create(new PersonalizedUserList
-            {
-                StockCode = stockCode,
-                UserId = userId
-            });
+            var pg = new PredicateGroup {Operator = GroupOperator.And, Predicates = new List<IPredicate>()};
+            pg.Predicates.Add(Predicates.Field<PersonalizedUserList>(f => f.UserId, Operator.Eq, userId));
+            pg.Predicates.Add(Predicates.Field<PersonalizedUserList>(f => f.StockCode, Operator.Eq, stockCode));
 
-            return result;
+            var exist = GetSingle<PersonalizedUserList>(pg);
+
+            switch (exist.ErrorCode)
+            {
+                case ErrorCode.EntityDoesNotExist:
+                {
+                    var result = Create(new PersonalizedUserList
+                    {
+                        StockCode = stockCode,
+                        UserId = userId
+                    });
+
+                    return result;
+                }
+                case ErrorCode.UnknownError:
+                    return exist;
+            }
+
+            return exist;
         }
+
 
         public StatusValuePair<PersonalizedUserList> Delete(Guid userId, string stockCode)
         {

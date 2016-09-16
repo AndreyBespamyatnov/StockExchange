@@ -7,9 +7,11 @@ namespace StockExchange.DAL
 {
     public class StockEntriesCRUD : BaseCRUD
     {
-        public List<Stock> GetAll()
+        public List<Stock> GetAll(string filterPrefix = "")
         {
-            var result = base.GetList<Stock>();
+            var p = Predicates.Field<Stock>(f => f.Code, Operator.Like, filterPrefix + "%");
+
+            var result = string.IsNullOrWhiteSpace(filterPrefix) ? base.GetList<Stock>() : base.GetList<Stock>(p);
 
             if (result.HasValue)
             {

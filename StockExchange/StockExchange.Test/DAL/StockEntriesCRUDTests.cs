@@ -27,6 +27,14 @@ namespace StockExchange.Test.DAL
         }
 
         [TestMethod]
+        public void GetAllDataByFilter()
+        {
+            var entries = _crud.GetAll("A");
+            Assert.IsNotNull(entries);
+            Assert.IsTrue(entries.Any());
+        }
+
+        [TestMethod]
         public void GetByCodes()
         {
             var allData = _crud.GetAll();

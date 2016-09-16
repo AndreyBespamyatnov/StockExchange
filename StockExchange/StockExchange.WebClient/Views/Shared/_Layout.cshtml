@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewBag.Title</title>
+    <!-- Bootstrap core CSS -->
+    <link href="@Url.Content("~/css/bootstrap.css")" rel="stylesheet">
+    <link href="@Url.Content("~/css/dashboard.css")" rel="stylesheet">
+    
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="@Url.Content("~/js/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/js/jquery.validate.min.js")"></script>
+    <script src="@Url.Content("~/js/jquery.validate.unobtrusive.min.js")"></script>
+    <script src="@Url.Content("~/js/jquery-ui-1.8.24.min.js")"></script>
+    <script src="@Url.Content("~/js/bootstrap.js")"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#stockCode").autocomplete({
+                source: function(request, response) {
+                    $.ajax({
+                        url: "/Home/Stocks",
+                        type: "POST",
+                        dataType: "json",
+                        data: { prefix: request.term },
+                        success: function(data) {
+                            response($.map(JSON.parse(data).Data, function(item) {
+                                return { label: item.Code, value: item.CompanyName };
+                            }));
+                        }
+                    });
+                },
+                messages: {
+                    noResults: "",
+                    results: ""
+                },
+                select: function (event, ui) {
+                    $("#stockCode").val(ui.item.label);
+                    $("#stockCodeForm").submit();
+                }
+            });
+        });
+    </script>
+</head>
+
+    <body>
+        
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">@ViewBag.Title</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="@Url.Action("Index", "Home")">Dashboard</a></li>
+                        @if (AuthenticationContainer.Instance.IsAuthenticated)
+                        {
+                            <text>
+                                <li><a>Hello, @AuthenticationContainer.Instance.UserName!</a></li>
+                                <li>@Html.ActionLink("Log off", "LogOff", "Account", routeValues: null, htmlAttributes: new { id = "logoutForm" })</li>
+                            </text>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                            <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-3 col-md-2 sidebar">
+                    @if (AuthenticationContainer.Instance.IsAuthenticated)
+                    { 
+                        using (Html.BeginForm("AddStockToUser", "Home", FormMethod.Post, new { id = "stockCodeForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-horizontal">
+                                <h2 class="page-header">Add new Stock</h2>
+                                <div class="form-group">
+
+                                    <div class="col-md-12">
+                                        <input id="stockCode" name="stockCode" class="form-control" placeholder="Enter A" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+                @RenderBody()
+            </div>
+        </div>
+    </body>
+</html>

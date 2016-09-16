@@ -75,13 +75,13 @@ namespace StockExchange.BL
             return jsonResult;
         }
 
-        public string GetStocks()
+        public string GetStocks(string prefixFilter)
         {
             var result = new StockResult<IEnumerable<Stock>>();
             try
             {
                 result = new StockResult<IEnumerable<Stock>>();
-                IEnumerable<Stock> stocks = _stockCrud.GetAll();
+                IEnumerable<Stock> stocks = _stockCrud.GetAll(prefixFilter);
                 result.Data = stocks;
                 result.ResultType = ResultType.Ok;
             }
